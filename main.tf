@@ -1,5 +1,5 @@
 data "nutanix_cluster" "cluster" {
-  name = "var.nutanix_cluster_name"
+  name = var.nutanix_cluster_name
 }
 
 data "nutanix_subnet" "subnet" {
@@ -17,7 +17,7 @@ resource "nutanix_karbon_cluster" "cluster1" {
       file_system                = var.storage_class_config_volumeConfig_fileSystem
       password                   = var.storage_class_config_password
       username                   = var.storage_class_config_username
-      prism_element_cluster_uuid = data.nutanix_clusters.cluster.entities.0.metadata.uuid
+      prism_element_cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
       storage_container          = var.storage_class_config_storageContainer
     }
   }
@@ -29,8 +29,8 @@ resource "nutanix_karbon_cluster" "cluster1" {
       cpu                        = var.etcd_node_pool_ahvConfig_cpu
       memory_mib                 = var.etcd_node_pool_ahvConfig_memory
       disk_mib                   = var.etcd_node_pool_ahvConfig_disk
-      network_uuid               = data.nutanix_subnets.subnet.entities.0.metadata.uuid
-      prism_element_cluster_uuid = data.nutanix_clusters.cluster.entities.0.metadata.uuid
+      network_uuid               = data.nutanix_subnet.subnet.metadata.uuid
+      prism_element_cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
     }
   }
 
@@ -41,8 +41,8 @@ resource "nutanix_karbon_cluster" "cluster1" {
       cpu                        = var.master_node_pool_ahvConfig_cpu
       memory_mib                 = var.master_node_pool_ahvConfig_memory
       disk_mib                   = var.master_node_pool_ahvConfig_disk
-      network_uuid               = data.nutanix_subnets.subnet.entities.0.metadata.uuid
-      prism_element_cluster_uuid = data.nutanix_clusters.cluster.entities.0.metadata.uuid
+      network_uuid               = data.nutanix_subnet.subnet.metadata.uuid
+      prism_element_cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
     }
   }
 
@@ -53,8 +53,8 @@ resource "nutanix_karbon_cluster" "cluster1" {
       cpu                        = var.worker_node_pool_ahvConfig_cpu
       memory_mib                 = var.worker_node_pool_ahvConfig_memory
       disk_mib                   = var.worker_node_pool_ahvConfig_disk
-      network_uuid               = var.network_uuid
-      prism_element_cluster_uuid = data.nutanix_clusters.cluster.entities.0.metadata.uuid
+      network_uuid               = data.nutanix_subnet.subnet.metadata.uuid
+      prism_element_cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
     }
   }
 

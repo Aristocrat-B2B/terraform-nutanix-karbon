@@ -65,6 +65,9 @@ module "karbon" {
   subnet_name                       = "my-subnet"
 }
 ```
+## Troubleshooting Note
+
+If the cluster creation status is stuck at 8% with progress_message as "ETCD deployment started", please review the storage container that you entered exists in the prism element.
 
 ## Contributing
 

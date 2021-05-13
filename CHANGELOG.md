@@ -8,6 +8,11 @@ project adheres to [Semantic Versioning](http://semver.org/).
 <a name="unreleased"></a>
 ## [Unreleased]
 
+<a name="v1.0.1"></a>
+## [v1.0.1] - 2021-05-13
+
+Changed
+- Updated README.md
 
 
 <a name="v1.0.0"></a>

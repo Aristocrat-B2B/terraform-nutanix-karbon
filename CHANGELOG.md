@@ -8,6 +8,14 @@ project adheres to [Semantic Versioning](http://semver.org/).
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.0.2"></a>
+## [v1.0.2] - 2021-05-19
+
+Added
+- new outputs karbon_kubernetes_kubeconfig and karbon_kubernetes_sshconfig
+
+
 <a name="v1.0.1"></a>
 ## [v1.0.1] - 2021-05-13
 

@@ -6,6 +6,16 @@ data "nutanix_subnet" "subnet" {
   subnet_name = var.subnet_name
 }
 
+data "nutanix_karbon_cluster_kubeconfig" "configbyid" {
+  karbon_cluster_id = nutanix_karbon_cluster.cluster1.id
+  depends_on        = [nutanix_karbon_cluster.cluster1]
+}
+
+data "nutanix_karbon_cluster_ssh" "sshbyid" {
+  karbon_cluster_id = nutanix_karbon_cluster.cluster1.id
+  depends_on        = [nutanix_karbon_cluster.cluster1]
+}
+
 resource "nutanix_karbon_cluster" "cluster1" {
   name    = var.karbon_cluster_name
   version = var.kubernetes_version

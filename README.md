@@ -46,6 +46,25 @@ module "karbon" {
 }
 
 ```
+
+## Kubectl config
+To get access to the kubectl config, simply create an output like :
+
+```hcl
+output "kubectl_cfg" {
+  value     = module.karbon.karbon_kubernetes_kubeconfig
+  sensitive = true
+}
+```
+
+and then you can use it in scripts by running:
+
+```hcl
+terraform output -raw kubectl_cfg
+```
+
+This will correctly output a valid kubectl.cfg file - that can be stored to disk and used.
+
 ## Conditional creation
 
 Sometimes you need to have a way to create resources conditionally but Terraform does not allow to use `count` inside `module` block, so the solution is to specify argument `create_karbon`.

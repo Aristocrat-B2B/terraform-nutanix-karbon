@@ -37,7 +37,7 @@ provider "nutanix" {
 
 module "karbon" {
   source                            = "terraform-nutanix-karbon"
-  version = "1.0.0"
+  version = "1.0.3"
   karbon_cluster_name               = "test-karbon-cluster"
   storage_class_config_username     = "admin"
   storage_class_config_password     = "SecretPassword!"
@@ -75,7 +75,7 @@ Sometimes you need to have a way to create resources conditionally but Terraform
 # This cluster will not be created
 module "karbon" {
   source                            = "terraform-nutanix-karbon"
-  version                           = "1.0.0"
+  version                           = "1.0.3"
   create_karbon                     = false
   karbon_cluster_name               = "test-karbon-cluster"
   storage_class_config_username     = "admin"
@@ -84,6 +84,30 @@ module "karbon" {
   subnet_name                       = "my-subnet"
 }
 ```
+
+## Multi master nodes
+If you want to have more than one (recommended is two for production), master k8s nodes then you need to set the variable `external_ipv4_address` to be an IP in your subnet range.
+For example:
+
+```
+module "karbon" {
+  source                            = "terraform-nutanix-karbon"
+  version                           = "1.0.3"
+  karbon_cluster_name               = "test-karbon-cluster"
+  storage_class_config_username     = "admin"
+  storage_class_config_password     = "SecretPassword!"
+  nutanix_cluster_name              = "my-cluster"
+  subnet_name                       = "my-subnet"
+
+  master_node_pool_numInstances         = 2
+  master_node_pool_ahvConfig_cpu        = 4 # number of master nodes * X
+  master_node_pool_ahvConfig_memory     = 4096
+  master_node_pool_ahvConfig_disk       = 122880
+  external_ipv4_address                 = "10.100.4.99"
+}
+```
+
+
 ## Troubleshooting Note
 
 If the cluster creation status is stuck at 8% with progress_message as "ETCD deployment started", please review the storage container that you entered exists in the prism element.

@@ -151,3 +151,9 @@ variable "cni_config_service_ipv4_cidr" {
   description = "Classless inter-domain routing (CIDR) for k8s services in the cluster"
   default     = "172.20.0.0/16"
 }
+
+variable "external_ipv4_address" {
+  type        = string
+  description = "VRRP external IP for karbon multi-master nodes"
+  default     = ""
+}

@@ -8,6 +8,12 @@ project adheres to [Semantic Versioning](http://semver.org/).
 <a name="unreleased"></a>
 ## [Unreleased]
 
+<a name="v1.0.3"></a>
+## [v1.0.3] - 2021-05-25
+
+Added
+- Added support for k8s multi master
+
 
 <a name="v1.0.2"></a>
 ## [v1.0.2] - 2021-05-19

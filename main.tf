@@ -47,7 +47,7 @@ resource "nutanix_karbon_cluster" "cluster1" {
   #single_master_config {
   #}
   dynamic "active_passive_config" {
-    for_each = var.external_ipv4_address != "" ? ["1"] : []
+    for_each = var.external_ipv4_address != "" && var.master_node_pool_numInstances > 1 ? ["1"] : []
     content {
       external_ipv4_address = var.external_ipv4_address
     }

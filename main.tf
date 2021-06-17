@@ -1,3 +1,11 @@
+locals {
+
+  work_node_names = [
+    for num in range(0, var.worker_node_pool_numInstances) :
+    "karbon-worker-node-${num}"
+  ]
+}
+
 data "nutanix_cluster" "cluster" {
   name = var.nutanix_cluster_name
 }

@@ -19,3 +19,12 @@ output "karbon_kubernetes_sshconfig" {
   value       = data.nutanix_karbon_cluster_ssh.sshbyid
   sensitive   = true
 }
+
+data "nutanix_karbon_cluster" "cluster" {
+  karbon_cluster_id = nutanix_karbon_cluster.cluster1.id
+}
+
+output "worker_nodes" {
+  description = "List of Karbon worker nodes hostname:ip"
+  value       = zipmap(local.work_node_names, data.nutanix_karbon_cluster.cluster.worker_node_pool[0].nodes.*.ipv4_address)
+}

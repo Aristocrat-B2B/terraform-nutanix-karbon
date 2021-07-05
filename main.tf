@@ -88,5 +88,10 @@ resource "nutanix_karbon_cluster" "cluster1" {
   cni_config {
     pod_ipv4_cidr     = var.cni_config_pod_ipv4_cidr
     service_ipv4_cidr = var.cni_config_service_ipv4_cidr
+    calico_config {
+      ip_pool_config {
+        cidr = var.cni_config_pod_ipv4_cidr
+      }
+    }
   }
 }

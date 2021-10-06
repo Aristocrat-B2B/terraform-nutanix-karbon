@@ -8,6 +8,12 @@ project adheres to [Semantic Versioning](http://semver.org/).
 <a name="unreleased"></a>
 ## [Unreleased]
 
+<a name="v1.0.6"></a>
+## [v1.0.6] - 2021-10-06
+
+Change
+- Add lifecycle ignore rule for storage_class_config
+
 <a name="v1.0.5"></a>
 ## [v1.0.5] - 2021-07-05
 
@@ -19,7 +25,6 @@ Change
 
 Added
 - Added new output to list karbon worker nodes hostname:ip
-
 
 <a name="v1.0.3"></a>
 ## [v1.0.3] - 2021-05-25

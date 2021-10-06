@@ -94,4 +94,8 @@ resource "nutanix_karbon_cluster" "cluster1" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [storage_class_config]
+  }
 }

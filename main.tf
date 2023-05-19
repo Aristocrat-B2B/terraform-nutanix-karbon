@@ -1,9 +1,29 @@
 locals {
-
-  work_node_names = [
-    for num in range(0, var.worker_node_pool_numInstances) :
-    "karbon-worker-node-${num}"
-  ]
+  cp_host_inventory = zipmap(
+    data.nutanix_karbon_cluster.cluster.master_node_pool[0].nodes.*.hostname,
+    [for vm in data.nutanix_karbon_cluster.cluster.master_node_pool[0].nodes :
+      {
+        # Unfortunately it's impossible to grap uuid of a node
+        ip = vm.ipv4_address
+      }
+    ]
+  )
+  etcd_host_inventory = zipmap(
+    data.nutanix_karbon_cluster.cluster.etcd_node_pool[0].nodes.*.hostname,
+    [for vm in data.nutanix_karbon_cluster.cluster.etcd_node_pool[0].nodes :
+      {
+        ip = vm.ipv4_address
+      }
+    ]
+  )
+  worker_host_inventory = zipmap(
+    data.nutanix_karbon_cluster.cluster.worker_node_pool[0].nodes.*.hostname,
+    [for vm in data.nutanix_karbon_cluster.cluster.worker_node_pool[0].nodes :
+      {
+        ip = vm.ipv4_address
+      }
+    ]
+  )
 }
 
 data "nutanix_cluster" "cluster" {
@@ -52,8 +72,6 @@ resource "nutanix_karbon_cluster" "cluster1" {
     }
   }
 
-  #single_master_config {
-  #}
   dynamic "active_passive_config" {
     for_each = var.external_ipv4_address != "" && var.master_node_pool_numInstances > 1 ? ["1"] : []
     content {

@@ -5,8 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-<a name="unreleased"></a>
-## [Unreleased]
+<a name="v2.0.0"></a>
+## [v2.0.0] - 2023-05-19
+
+Change
+- `worker_nodes` output var now returns map which has following structure:
+```
+{
+  host_name = {
+    ip = "1.2.3.4"
+  }
+}
+```
+- added `cp_nodes` and `etcd_nodes` output vas with the same structure which return Control Plane nodes and etcd nodes
+- added `host_inventory` which returns all Karbon nodes merged
 
 <a name="v1.0.6"></a>
 ## [v1.0.6] - 2021-10-06

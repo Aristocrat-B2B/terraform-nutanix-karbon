@@ -25,6 +25,21 @@ data "nutanix_karbon_cluster" "cluster" {
 }
 
 output "worker_nodes" {
-  description = "List of Karbon worker nodes hostname:ip"
-  value       = zipmap(local.work_node_names, data.nutanix_karbon_cluster.cluster.worker_node_pool[0].nodes.*.ipv4_address)
+  description = "Map of Karbon worker nodes { hostname = { ip = <ip> }}"
+  value       = local.worker_host_inventory
+}
+
+output "cp_nodes" {
+  description = "Map of Karbon Control Plane master nodes { hostname = { ip = <ip> }}"
+  value       = local.cp_host_inventory
+}
+
+output "etcd_nodes" {
+  description = "Map of Karbon etcd nodes { hostname = { ip = <ip> }}"
+  value       = local.etcd_host_inventory
+}
+
+output "host_inventory" {
+  description = "Map which contains all Karbon nodes { hostname = { ip = <ip> }}"
+  value       = merge(local.etcd_host_inventory, local.cp_host_inventory, local.worker_host_inventory)
 }

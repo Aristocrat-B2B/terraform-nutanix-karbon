@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+<a name="v2.0.1"></a>
+## [v2.0.1] - 2023-06-16
+
+Added
+- Added the name of etcd node pool
+- Added the name of master node pool
+- Added the name of worker node pool
+
 <a name="v2.0.0"></a>
 ## [v2.0.0] - 2023-05-19
 

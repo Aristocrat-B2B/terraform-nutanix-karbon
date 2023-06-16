@@ -61,6 +61,7 @@ resource "nutanix_karbon_cluster" "cluster1" {
   }
 
   etcd_node_pool {
+    name            = var.etcd_node_pool_name
     node_os_version = var.node_os_version
     num_instances   = var.etcd_node_pool_numInstances
     ahv_config {
@@ -80,6 +81,7 @@ resource "nutanix_karbon_cluster" "cluster1" {
   }
 
   master_node_pool {
+    name            = var.master_node_pool_name
     node_os_version = var.node_os_version
     num_instances   = var.master_node_pool_numInstances
     ahv_config {
@@ -92,6 +94,7 @@ resource "nutanix_karbon_cluster" "cluster1" {
   }
 
   worker_node_pool {
+    name            = var.worker_node_pool_name
     node_os_version = var.node_os_version
     num_instances   = var.worker_node_pool_numInstances
     ahv_config {

@@ -157,3 +157,21 @@ variable "external_ipv4_address" {
   description = "VRRP external IP for karbon multi-master nodes"
   default     = ""
 }
+
+variable "etcd_node_pool_name" {
+  type        = string
+  description = "ETCD node pool name"
+  default     = "etcd_node_pool"
+}
+
+variable "master_node_pool_name" {
+  type        = string
+  description = "Master node pool name"
+  default     = "master_node_pool"
+}
+
+variable "worker_node_pool_name" {
+  type        = string
+  description = "Worker node pool name"
+  default     = "worker_node_pool"
+}
